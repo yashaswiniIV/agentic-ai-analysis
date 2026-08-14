@@ -93,19 +93,19 @@ parsed = parse_stack_trace(stack_trace)
 ranked = rank_frames(parsed["frames"], repo_path)
 result = investigate(parsed["frames"], repo_path, max_steps=8)
 3. Generate ground truth with SZZ-lite
-Pythonfrom szz import find_introducing_commit_szz
-
-result = find_introducing_commit_szz(repo_path, fix_commit_sha)
+Pythonfrom szz import find_introducing_commit_szzresult = find_introducing_commit_szz(repo_path, fix_commit_sha)
 print(result["primary_introducing_sha"])
-4. End-to-end test
-Edit the top of test_real.py with:
+animate-gaussian### 4. End-to-end test
 
-Path to a local clone
-Known fix commit SHA
-A real stack trace
+Edit the top of `test_real.py` with:
+- Path to a local clone
+- Known fix commit SHA
+- A real stack trace
 
 Then run:
-Bashpython test_real.py
+
+```bash
+python test_real.py
 
 How the Agent Works
 
@@ -136,3 +136,10 @@ The agent is deliberately constrained (max steps, token budgets, forced diffing)
 Mechanical pattern checking on diffs reduces reliance on pure LLM judgment.
 Checkpointing allows long investigations to be resumed after rate limits or interruptions.
 No heavy frameworks — the entire tool-calling loop is transparent and easy to inspect/modify.
+
+
+License
+MIT
+
+Acknowledgments
+Inspired by classic SZZ (Śliwerski, Zimmermann, Zeller 2005) and modern agentic software engineering research.
